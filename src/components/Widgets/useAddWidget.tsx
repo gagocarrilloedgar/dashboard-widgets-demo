@@ -41,3 +41,18 @@ const createItem = (layouts: Layouts) => {
     maxH: MAX_HEIGHT
   };
 };
+
+export const useRemoveWidget = () => {
+  const { setLayouts } = useDashboard();
+
+  const onRemoveItem = (i: string) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.filter((item) => item.i !== i)
+    }));
+  };
+
+  return {
+    onRemoveItem
+  };
+};

@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { useRemoveWidget } from ".";
+import { useDashboard } from "../DashboardProvider";
 import { Layout } from "../Layout";
 import { TableWidget } from "./TableWidget";
 import { MIN_HEIGHT, MIN_WIDTH, Widget } from "./Widget";
@@ -63,6 +65,8 @@ const CardItem: FC<{ i: string; children: React.ReactNode }> = ({
   i,
   children
 }) => {
+  const { editing } = useDashboard();
+  const { onRemoveItem } = useRemoveWidget();
   return (
     <div
       key={i}
@@ -74,6 +78,14 @@ const CardItem: FC<{ i: string; children: React.ReactNode }> = ({
         borderRadius: "0.5rem"
       }}
     >
+      {editing && (
+        <button
+          style={{ position: "absolute", right: "0.5rem", top: "0.5rem " }}
+          onClick={() => onRemoveItem(i)}
+        >
+          X
+        </button>
+      )}
       {children}
     </div>
   );
