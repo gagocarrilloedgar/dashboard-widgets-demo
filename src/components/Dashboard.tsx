@@ -5,11 +5,7 @@ import "react-resizable/css/styles.css";
 
 import { DashboardProvider, useDashboard } from "./DashboardProvider";
 import { Breakpoint, Cols, Layout, LayoutGrid, Layouts } from "./Layout";
-import {
-  renderWidgets,
-  useAddWidget,
-  widgetList
-} from "./Widgets";
+import { renderWidgets, useAddWidget, widgetList } from "./Widgets";
 
 import "./styles.modules.css";
 
@@ -87,6 +83,7 @@ const DashboardComponent: FunctionComponent<Props> = ({
         isDroppable
         isResizable={editing}
         isDraggable={editing}
+        resizeHandles={["s", "w", "e", "n"]}
       >
         {renderWidgets(layouts.lg)}
       </LayoutGrid>
